@@ -1,0 +1,9 @@
+%h1 Authenticate
+%form{:action=>"/auth", :method=>"post"}
+  %input{:type=>"password", :name=>"password"}
+  %br
+  %br
+  %input{:type=>"submit", :value=>"Login"}
+  
+:javascript
+  document.forms[0].password.focus();
