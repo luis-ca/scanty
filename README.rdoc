@@ -32,9 +32,8 @@ Sequel, Maruku, and Syntax are all vendored.
 == Setup
 
 Edit main.rb and change the Blog config struct at the top to your liking.  For
-security purposes, change the admin password and the admin cookie key and
-value.  These last two can be set to any random value you like, just choose
-something other than the default.
+security purposes, change the admin cookie key and value.  These can be set to any 
+random value you like, just choose something other than the default.
 
 Then run the server:
 
@@ -42,7 +41,14 @@ Then run the server:
 
 And visit: http://localhost:4567
 
-Log in with the password you selected, then click New Post.  The rest should be
+To create a default user - after the server is run for the first time, so that the tables exist - run:
+
+  $ rake bootstrap
+
+This will allow you to log in with john.doe@foo.com with password 'changeme'. To create a different
+user by default edit the Rakefile.
+
+Log in with the password you selected, then click New Post. The rest should be
 self-explanatory.
 
 In production, you'll probably want to run "rake start" to start (and restart)

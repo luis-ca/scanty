@@ -54,3 +54,8 @@ task :import => :environment do
 		DB[:posts] << post
 	end
 end
+
+task :bootstrap => :environment do
+  authors  = DB[:authors]
+  authors.insert(:first_name => "John", :last_name => "Doe", :email => "john.doe@foo.com", :password => "changeme", :created_at => Time.now)
+end
