@@ -5,6 +5,7 @@
   %title=  @title || Blog.title
   
   %link{:href => "/main.css", :rel => "stylesheet", :type => "text/css"}
+  %link{:href => "/custom.css", :rel => "stylesheet", :type => "text/css"}
   %link{:href => "/feed", :rel => "alternate", :title => "Primary Feed", :type => "application/atom+xml"}
 
 %body
@@ -12,10 +13,21 @@
     #logo
       %h1
         %a{:href => "/"}=Blog.title
-        %p="by#{Blog.author}"
-
+    - if admin?
+      .author_box
+        = "Logged in as <strong>#{author.full_name}</strong> | "
+        %a{:href=>"/posts/new"} New post
+        |
+        %a{:href=>"/logout"} Log out
+  - if defined? message
+    #message
+      %p.message=message
   #content
     = yield
     
   #footer
-    %p#legal="Content by #{Blog.author}"
+    %p#legal
+      ="Copyright © #{Date.today.strftime('%Y')}. All rights reserved."
+      - unless admin?
+        |
+        %a{:href=>"/login"} Author log in

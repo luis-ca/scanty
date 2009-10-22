@@ -1,5 +1,9 @@
 %h1 Authenticate
 %form{:action=>"/auth", :method=>"post"}
+  %label E-Mail address
+  %input{:type=>"text", :name=>"email"}
+  %br
+  %label Password
   %input{:type=>"password", :name=>"password"}
   %br
   %br

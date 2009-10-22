@@ -1,0 +1,14 @@
+%table.authors
+  %thead
+    %tr
+      %th E-Mail
+      %th First name
+      %th Last name
+      %th Created at
+  %tbody
+    - authors.each do |author|
+      %tr
+        %td=author.email
+        %td=author.first_name
+        %td=author.last_name
+        %td=author.created_at

@@ -23,7 +23,7 @@ ul {
 }
 
 a {
-  color: #828170;
+  color: #000;
 }
 
 a:hover {
@@ -37,6 +37,12 @@ hr {
 #header
 {
   background-color: #003;
+  border-bottom: 1px solid #226;
+}
+
+#header a
+{
+  color:#FFF;
 }
 
 /* Logo */
@@ -48,8 +54,7 @@ hr {
 
 #logo h1 {
   margin: 0;
-  text-transform: lowercase;
-  font-weight: normal;
+  font-weight: bold;
   color: #FFFFFF;
 }
 
@@ -76,12 +81,9 @@ hr {
 /* Content */
 
 #content {
-  margin: 0px auto;
   padding: 20px;
-  padding-left: 50px;
-  float: left;
-  width: 50em;
-  margin-bottom: 10px;
+  width: 700px;
+  margin: 10px auto;
 }
 
 /* Post */
@@ -132,10 +134,11 @@ hr {
   margin: 0 0 10px 20px;
   padding: 0;
   line-height:normal;
-  color: #979680;
+  text-transform: uppercase;
+  color: #828170;
 }
 
-.post .meta a {
+.post .meta a, .postzoom .meta a {
   color: #828170;
 }
 
@@ -157,7 +160,7 @@ hr {
 /* Post */
 
 .postzoom {
-  margin-top: 20px;
+  margin-top: 50px;
   position: relative;
 }
 
@@ -177,8 +180,9 @@ hr {
 
 .postzoom .entry {
   margin: 0;
+  margin-top: 50px;
   padding: 0;
-  padding-top: 10px;
+  padding-top: 0px;
   padding-bottom: 20px;
 }
 
@@ -207,6 +211,9 @@ hr {
   color: #525252;
 }
 
+#legal a {
+  color: #525252;
+}
 /* Archive */
 .archive .date {
 }
@@ -260,3 +267,60 @@ form[name=edit] textarea {
   height: 25em;
 }
 
+/* Auth */
+
+label
+{
+  display:block;
+}
+
+
+/* Messages */
+
+#message
+{
+  padding: 3px 5px 3px 20px;
+  background-color: #FFFFCC;
+  border-bottom: 1px solid #DDDDAA;
+}
+
+/* author box */
+
+.author_box
+{
+  color: #FFF;
+  position:absolute;
+  top: 0px;
+  right:5px;
+  
+  background-color: #224;
+  padding: 7px 20px;
+}
+
+/* authors */
+
+.authors
+{
+  border-collapse:collapse;
+  border-left: 1px solid #DDD;
+  border-top:1px solid #DDD;
+}
+
+.authors th
+{
+  background-color: #EFEFEF;
+}
+.authors td, .authors th
+{
+  border-right: 1px solid #DDD;
+  border-bottom:1px solid #DDD;
+  padding: 2px;
+}
+
+#notice
+{
+  border: 1px solid #DDDDAA;
+  background-color: #FFFFCC;
+  padding: 10px;
+  font-size: 1.2em;
+}

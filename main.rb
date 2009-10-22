@@ -9,13 +9,10 @@ configure do
 
   require 'ostruct'
   Blog = OpenStruct.new(
-    :title => 'a scanty blog',
-    :author => 'John Doe',
+    :title => 'Blog Title',
     :url_base => 'http://localhost:4567/',
-    :admin_password => 'changeme',
-    :admin_cookie_key => 'scanty_admin',
-    :admin_cookie_value => '51d6d976913ace58',
-    :disqus_shortname => nil
+    :admin_cookie_key => 'scanty_author',
+    :admin_cookie_value => '51d6d976913ace58'
   )
 end
 
@@ -28,15 +25,27 @@ end
 
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/lib')
 require 'post'
+require 'author'
 
 helpers do
+  
+  def is_admin?
+    true if author
+  end
+  
   def admin?
-    request.cookies[Blog.admin_cookie_key] == Blog.admin_cookie_value
+    is_admin?
+  end
+  
+  def author
+    author_id = request.cookies["author_id_cookie_key"]
+    Author.filter(:id => author_id.to_i).first    
+  end
+  
+  def auth
+    redirect '/' unless is_admin?
   end
 
-  def auth
-    stop [ 401, 'Not authorized' ] unless admin?
-  end
 end
 
 layout 'layout'
@@ -72,6 +81,14 @@ get '/past/tags/:tag' do
   haml :tagged, :locals => { :posts => posts, :tag => tag }
 end
 
+get '/author/:author_id' do
+  author = Author.filter(:id => params[:author_id]).first
+  posts = Post.filter(:author_id => author.id).reverse_order(:created_at)
+  @title = "All posts by #{author.full_name}"
+  haml :archive, :locals => { :posts => posts }
+end
+
+
 get '/feed' do
   @posts = Post.reverse_order(:created_at).limit(20)
   content_type 'application/atom+xml', :charset => 'utf-8'
@@ -87,12 +104,30 @@ end
 
 ### Admin
 
-get '/auth' do
+get '/admin/authors' do
+  auth
+  authors = Author.all
+  haml :authors, :locals => {:authors => authors}
+end
+
+get '/login' do
   haml :auth
 end
 
 post '/auth' do
-  set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value) if params[:password] == Blog.admin_password
+  author = Author.filter(:email => params[:email]).first
+  if !author.nil? and params[:password] == author.password
+    response.set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value)
+    response.set_cookie(:author_id_cookie_key, author.id)
+    redirect '/'
+  else
+    haml :auth, :locals => { :message => "Wrong email address or password" }
+  end
+end
+
+get '/logout' do
+  response.set_cookie(Blog.admin_cookie_key, "")
+  response.set_cookie(:author_id_cookie_key, "")
   redirect '/'
 end
 
@@ -103,7 +138,7 @@ end
 
 post '/posts' do
   auth
-  post = Post.new :title => params[:title], :tags => params[:tags], :body => params[:body], :created_at => Time.now, :slug => Post.make_slug(params[:title])
+  post = Post.new :author_id => author.id, :title => params[:title], :tags => params[:tags], :body => params[:body], :created_at => Time.now, :slug => Post.make_slug(params[:title])
   post.save
   redirect post.url
 end
