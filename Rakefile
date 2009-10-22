@@ -57,5 +57,5 @@ end
 
 task :bootstrap => :environment do
   authors  = DB[:authors]
-  authors.insert(:first_name => "John", :last_name => "Doe", :email => "john.doe@foo.com", :password => "changeme", :created_at => Time.now)
+  authors.insert(:first_name => "Luis", :last_name => "Correa d'Almeida", :email => "luis.ca@groupm.com", :password => "password", :created_at => Time.now)
 end

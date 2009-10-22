@@ -8,6 +8,6 @@
   %p.meta
     by
     %a{:href => "/author/#{post.author.id}"}=post.author.full_name
-  - if author.wrote?(post)
+  - if post.written_by?(author)
     .edit
       %a{:href => "#{post.url}edit"} edit

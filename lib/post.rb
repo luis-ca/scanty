@@ -20,6 +20,10 @@ class Post < Sequel::Model
     create_table
   end
 
+  def written_by?(author)
+    author_id == author.id
+  end
+  
   def url
     d = created_at
     "/past/#{d.year}/#{d.month}/#{d.day}/#{slug}/"

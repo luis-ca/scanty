@@ -28,6 +28,7 @@ a {
 
 a:hover {
   text-decoration: none;
+  background-color: #FFFFCC;
 }
 
 hr {
@@ -52,16 +53,15 @@ hr {
   padding: 20px 20px;
 }
 
-#logo h1 {
-  margin: 0;
-  font-weight: bold;
+#logo a {
   color: #FFFFFF;
+  font-size: 2.0em;
+  font-weight: bold;
+  text-decoration:none;
 }
 
-#logo h1 a {
-  display: block;
-  text-decoration: none;
-  color: #FFFFFF;
+#header a:hover {
+  background-color: #226;
 }
 
 #logo p {
@@ -69,14 +69,6 @@ hr {
   text-transform: uppercase;
   font-weight: bold;
 }
-
-#logo a {
-  display: block;
-  text-decoration: none;
-  color: #FFFFFF;
-}
-
-
 
 /* Content */
 
@@ -120,10 +112,8 @@ hr {
 
 .post .title {
   margin: 0;
-  padding: 0px 0 0 0;
+  padding: 0px 0px 3px 10px;
   margin-left: 10px;
-  padding-left: 10px;
-  font-size: 1.4em;
 }
 
 .post .title a {
@@ -145,6 +135,7 @@ hr {
 .post .entry {
   margin: 0;
   padding: 0 0 20px 50px;
+  font-size: 1.2em;
 }
 
 #older_posts {
@@ -184,6 +175,7 @@ hr {
   padding: 0;
   padding-top: 0px;
   padding-bottom: 20px;
+    font-size: 1.2em;
 }
 
 .postzoom .edit {

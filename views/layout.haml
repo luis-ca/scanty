@@ -11,8 +11,7 @@
 %body
   #header
     #logo
-      %h1
-        %a{:href => "/"}=Blog.title
+      %a{:href => "/"}=Blog.title
     - if admin?
       .author_box
         = "Logged in as <strong>#{author.full_name}</strong> | "
