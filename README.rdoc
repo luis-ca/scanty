@@ -2,6 +2,8 @@
 
 == Overview
 
+This is a fork off the main Scanty branch. It is meant to be used in an internal setting, so I removed support for Disqus.
+
 Scanty is blogging software.  Software for my blog, to be exact:
 http://adam.blog.heroku.com
 
@@ -11,13 +13,15 @@ the starting point for your blog, too.
 == Features
 
 * Posts (shock!)
+* Authors
 * Tags
 * Markdown (via Maruku)
 * Ruby code syntax highlighting (via Syntax)
 * Atom feed
-* Comments via Disqus
+* Comments via Disqus (removed from this fork)
 * Web framework = Sinatra
 * ORM = Sequel
+* Templating = HAML
 
 == Dependencies
 
