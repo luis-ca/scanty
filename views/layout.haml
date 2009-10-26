@@ -12,12 +12,6 @@
   #header
     #logo
       %a{:href => "/"}=Blog.title
-    - if admin?
-      .author_box
-        = "Logged in as <strong>#{author.full_name}</strong> | "
-        %a{:href=>"/posts/new"} New post
-        |
-        %a{:href=>"/logout"} Log out
   - if defined? message
     #message
       %p.message=message
@@ -27,6 +21,12 @@
   #footer
     %p#legal
       ="Copyright © #{Date.today.strftime('%Y')}. All rights reserved."
-      - unless admin?
+    - if admin?
+      .author_box
+        = "Logged in as <strong>#{author.full_name}</strong> | "
+        %a{:href=>"/posts/new"} New post
         |
-        %a{:href=>"/login"} Author log in
+        %a{:href=>"/logout"} Log out
+    - else
+      |
+      %a{:href=>"/login"} Author log in
