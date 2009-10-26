@@ -21,12 +21,11 @@
   #footer
     %p#legal
       ="Copyright © #{Date.today.strftime('%Y')}. All rights reserved."
-    - if admin?
-      .author_box
+    .author_box
+      - if admin?
         = "Logged in as <strong>#{author.full_name}</strong> | "
         %a{:href=>"/posts/new"} New post
         |
         %a{:href=>"/logout"} Log out
-    - else
-      |
-      %a{:href=>"/login"} Author log in
+      - else
+        %a{:href=>"/login"} Author log in
